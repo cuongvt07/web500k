@@ -1,0 +1,102 @@
+{
+    "page": "shop",
+    "title": "Trang Sản Phẩm",
+    "products": [
+        {
+            "id": 10,
+            "name": "Bộ Lego Classic Large Creative Box",
+            "image": "images/Rectangle 3.png",
+            "originalPrice": 1200000,
+            "salePrice": 900000,
+            "category": "Classic"
+        },
+        {
+            "id": 11,
+            "name": "Bộ Lego Duplo My First House",
+            "image": "images/Rectangle 3.png",
+            "originalPrice": 800000,
+            "salePrice": 650000,
+            "category": "Duplo"
+        },
+        {
+            "id": 12,
+            "name": "Bộ Lego Architecture Big Ben",
+            "image": "images/Rectangle 3.png",
+            "originalPrice": 1500000,
+            "salePrice": 1200000,
+            "category": "Architecture"
+        },
+        {
+            "id": 13,
+            "name": "Bộ Lego Ideas NASA Apollo Saturn V",
+            "image": "images/Rectangle 3.png",
+            "originalPrice": 3800000,
+            "salePrice": 3200000,
+            "category": "Ideas"
+        },
+        {
+            "id": 14,
+            "name": "Bộ Lego Speed Champions Ferrari SF90 Stradale",
+            "image": "images/Rectangle 3.png",
+            "originalPrice": 600000,
+            "salePrice": 500000,
+            "category": "Speed Champions"
+        },
+        {
+            "id": 15,
+            "name": "Bộ Lego City Airport Passenger Airplane",
+            "image": "images/Rectangle 3.png",
+            "originalPrice": 2200000,
+            "salePrice": 1800000,
+            "category": "City"
+        },
+        {
+            "id": 16,
+            "name": "Bộ Lego Ninjago Fire Fang",
+            "image": "images/Rectangle 3.png",
+            "originalPrice": 950000,
+            "salePrice": 800000,
+            "category": "Ninjago"
+        },
+        {
+            "id": 17,
+            "name": "Bộ Lego Friends Heartlake City Bakery",
+            "image": "images/Rectangle 3.png",
+            "originalPrice": 700000,
+            "salePrice": 590000,
+            "category": "Friends"
+        },
+        {
+            "id": 18,
+            "name": "Bộ Lego Technic Bugatti Chiron",
+            "image": "images/Rectangle 3.png",
+            "originalPrice": 4500000,
+            "salePrice": 4000000,
+            "category": "Technic"
+        },
+        {
+            "id": 19,
+            "name": "Bộ Lego Creator 3in1 Pirate Roller Coaster",
+            "image": "images/Rectangle 3.png",
+            "originalPrice": 1300000,
+            "salePrice": 1050000,
+            "category": "Creator"
+        },
+        {
+            "id": 20,
+            "name": "Bộ Lego Marvel Iron Man Helmet",
+            "image": "images/Rectangle 3.png",
+            "originalPrice": 2200000,
+            "salePrice": 1950000,
+            "category": "Marvel"
+        },
+        {
+            "id": 21,
+            "name": "Bộ Lego Harry Potter Hogwarts Castle",
+            "image": "images/Rectangle 3.png",
+            "originalPrice": 5200000,
+            "salePrice": 4700000,
+            "category": "Harry Potter"
+        }
+    ]
+}

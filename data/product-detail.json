@@ -1,0 +1,78 @@
+{
+  "id": 1,
+  "name": "Bộ Lego RACING Cam - LGR128901",
+  "category": "Lego",
+  "originalPrice": 1800000,
+  "salePrice": 1200000,
+  "inStock": true,
+  "rating": 4.5,
+  "reviews": 128,
+  "mainImage": "images/Rectangle 3.png",
+  "gallery": [
+    "images/Rectangle 3.png",
+    "images/Rectangle 3.png",
+    "images/Rectangle 3.png"
+  ],
+  "description": "Bộ Lego RACING Cam là một bộ đồ chơi xây dựng tuyệt vời dành cho trẻ em. Với những chi tiết chính xác và màu sắc sống động, bộ này giúp phát triển kỹ năng sáng tạo và tư duy logic của trẻ.",
+  "specifications": {
+    "pieces": 650,
+    "ageRange": "8+",
+    "color": "Cam"
+  },
+  "attributes": [
+    {
+      "name": "Kích thước",
+      "options": ["40cm", "50cm", "60cm"],
+      "defaultValue": "40cm"
+    },
+    {
+      "name": "Màu sắc",
+      "options": ["Cam", "Đỏ", "Vàng"],
+      "defaultValue": "Cam"
+    }
+  ],
+  "details": {
+    "title": "Mô tả chi tiết",
+    "content": "Đây là một bộ Lego cao cấp với 650 chi tiết được thiết kế cẩn thận. Bộ này bao gồm tất cả những gì bạn cần để xây dựng một chiếc xe đua tuyệt vời. Phù hợp cho trẻ em từ 8 tuổi trở lên. Với hướng dẫn chi tiết từng bước, việc lắp ráp sẽ trở nên dễ dàng và thú vị."
+  },
+  "reviews_list": [
+    {
+      "author": "Nguyễn Văn A",
+      "rating": 5,
+      "date": "2024-10-15",
+      "comment": "Sản phẩm rất tốt, đóng gói cẩn thận, giao hàng nhanh!"
+    },
+    {
+      "author": "Trần Thị B",
+      "rating": 4,
+      "date": "2024-10-10",
+      "comment": "Chất lượng tốt, giá cả hợp lý. Con tôi rất thích!"
+    },
+    {
+      "author": "Lê Văn C",
+      "rating": 5,
+      "date": "2024-10-05",
+      "comment": "Xuất sắc! Các chi tiết rất chi tiết, hình dáng hoàn hảo."
+    }
+  ],
+  "relatedProducts": [
+    {
+      "id": 2,
+      "name": "Bộ Lego City Police Station",
+      "image": "images/Rectangle 3.png",
+      "salePrice": 2000000
+    },
+    {
+      "id": 3,
+      "name": "Bộ Lego Friends Beach House",
+      "image": "images/Rectangle 3.png",
+      "salePrice": 1500000
+    },
+    {
+      "id": 4,
+      "name": "Bộ Lego Technic Monster Truck",
+      "image": "images/Rectangle 3.png",
+      "salePrice": 2800000
+    }
+  ]
+}

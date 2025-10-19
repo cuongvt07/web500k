@@ -1,0 +1,26 @@
+{
+  "page": "cart",
+  "title": "Giỏ Hàng",
+  "items": [
+    {
+      "id": 1,
+      "name": "Bộ Lego RACING Cam",
+      "image": "images/Rectangle 3.png",
+      "price": 1200000,
+      "quantity": 1,
+      "total": 1200000
+    },
+    {
+      "id": 8,
+      "name": "Bộ Lego Harry Potter Hogwarts Castle",
+      "image": "images/Rectangle 3.png",
+      "price": 4000000,
+      "quantity": 1,
+      "total": 4000000
+    }
+  ],
+  "subtotal": 5200000,
+  "shipping": 50000,
+  "tax": 0,
+  "total": 5250000
+}

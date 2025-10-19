@@ -1,0 +1,78 @@
+{
+  "categories": [
+    {
+      "id": "trending",
+      "name": "Hàng Hot Trend"
+    },
+    {
+      "id": "new",
+      "name": "Hàng mới về"
+    },
+    {
+      "id": "discount",
+      "name": "Hàng giảm giá"
+    }
+  ],
+  "types": [
+    {
+      "id": "boys",
+      "name": "Đồ chơi cho bé trai"
+    },
+    {
+      "id": "girls",
+      "name": "Đồ chơi cho bé gái"
+    },
+    {
+      "id": "educational",
+      "name": "Đồ chơi giáo dục"
+    },
+    {
+      "id": "creative",
+      "name": "Đồ chơi sáng tạo"
+    }
+  ],
+  "ages": [
+    {
+      "id": "under3",
+      "name": "Dưới 3 tuổi"
+    },
+    {
+      "id": "3to6",
+      "name": "Từ 3 đến 6 tuổi"
+    },
+    {
+      "id": "6to12",
+      "name": "Từ 6 đến 12 tuổi"
+    },
+    {
+      "id": "over12",
+      "name": "Trên 12 tuổi"
+    }
+  ],
+  "prices": [
+    {
+      "id": "0-500k",
+      "min": 0,
+      "max": 500000,
+      "name": "0 - 500.000 VNĐ"
+    },
+    {
+      "id": "500k-1m",
+      "min": 500000,
+      "max": 1000000,
+      "name": "500.000 - 1.000.000 VNĐ"
+    },
+    {
+      "id": "1m-5m",
+      "min": 1000000,
+      "max": 5000000,
+      "name": "1.000.000 - 5.000.000 VNĐ"
+    },
+    {
+      "id": "over5m",
+      "min": 5000000,
+      "max": 999999999,
+      "name": "Lớn hơn 5.000.000 VNĐ"
+    }
+  ]
+}

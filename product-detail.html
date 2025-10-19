@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Tiết Sản Phẩm - SuSu Toys Store</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400;600&family=Playfair+Display:wght@400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .product-detail-wrapper {
+            display: flex;
+            gap: 40px;
+            margin: 40px 0;
+            padding: 30px;
+            background-color: #d4a574;
+            border-radius: 10px;
+        }
+
+        .product-images {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .main-image {
+            width: 100%;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .main-image img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .gallery-thumbnails {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border: 2px solid #c9a878;
+            border-radius: 8px;
+            transition: border-color 0.3s;
+        }
+
+        .thumbnail:hover {
+            border-color: #333;
+        }
+
+        .product-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .product-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #000;
+        }
+
+        .product-rating {
+            margin-bottom: 20px;
+        }
+
+        .stars {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+        }
+
+        .rating-text {
+            font-family: 'Inter', sans-serif;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .category-tag {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 12px;
+            background-color: #CFF7D3;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            color: #02542D;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .product-price {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .price-display {
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+        }
+
+        .price-currency {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1E1E1E;
+        }
+
+        .price-values {
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+        }
+
+        .original-price {
+            font-family: 'Inter', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1E1E1E;
+            text-decoration: line-through;
+        }
+
+        .sale-price {
+            font-family: 'Inter', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #EC221F;
+        }
+
+        .discount-badge {
+            background-color: #dc3545;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .product-status {
+            margin-bottom: 20px;
+        }
+
+        .product-attributes {
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .attribute-group {
+            margin-bottom: 0;
+        }
+
+        .attribute-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .attribute-label {
+            font-family: 'Markazi Text', serif;
+            font-weight: 600;
+            font-size: 1rem;
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .attribute-select {
+            width: 100%;
+            font-family: 'Markazi Text', serif;
+            padding: 10px 12px;
+            border-radius: 5px;
+            border: 1px solid #999;
+            background-color: #fff;
+            cursor: pointer;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            border: 1px solid #999;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        .quantity-input {
+            width: 60px;
+            text-align: center;
+            border: none;
+            font-family: 'Markazi Text', serif;
+            padding: 8px;
+            font-size: 1rem;
+        }
+
+        .quantity-input:focus {
+            outline: none;
+        }
+
+        .btn-add-to-cart {
+            flex: 1;
+            font-family: 'Markazi Text', serif;
+            font-size: 1.1rem;
+            padding: 12px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-add-to-cart:hover {
+            background-color: #555;
+            color: #fff;
+        }
+
+        .btn-action.btn-buy {
+            width: 100%;
+            font-family: 'Inter', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            padding: 12px 0;
+            background: #2C2C2C;
+            color: #F5F5F5;
+            border: none;
+            border-radius: 8px;
+            outline: 1px solid #2C2C2C;
+            outline-offset: -1px;
+            margin-bottom: 0;
+            transition: background 0.3s;
+        }
+
+        .btn-action.btn-buy:focus {
+            outline: none;
+        }
+
+        .btn-action.btn-buy:hover {
+            background: #444;
+            color: #fff;
+        }
+
+        .product-description-box {
+            background-color: #e8dcc8;
+            border-radius: 8px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        .description-header {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Markazi Text', serif;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #333;
+            user-select: none;
+        }
+
+        .expand-icon {
+            transition: transform 0.3s;
+            font-size: 1.2rem;
+        }
+
+        .product-description-box.active .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        .description-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding: 0 20px;
+            font-family: 'Inter', sans-serif;
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .product-description-box.active .description-content {
+            max-height: 300px;
+            padding: 0 20px 20px 20px;
+        }
+
+        .quick-info {
+            background-color: #e8dcc8;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .quick-info p {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .quick-info p:last-child {
+            margin-bottom: 0;
+        }
+
+        .product-details-section {
+            padding: 40px 0;
+            border-top: 2px solid #d4a574;
+            border-bottom: 2px solid #d4a574;
+            margin-bottom: 40px;
+        }
+
+        .details-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .details-content {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.8;
+            color: #555;
+            font-size: 1rem;
+        }
+
+        .reviews-list {
+            margin-bottom: 40px;
+        }
+
+        .review-item {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #d4a574;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .review-author {
+            font-family: 'Playfair Display', serif;
+            margin: 0;
+            color: #333;
+        }
+
+        .review-rating {
+            font-size: 1.1rem;
+        }
+
+        .review-date {
+            font-family: 'Inter', sans-serif;
+            color: #999;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .review-comment {
+            font-family: 'Inter', sans-serif;
+            color: #555;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .related-section {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 2px solid #d4a574;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .related-products-row {
+            display: flex;
+            gap: 30px;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
+        .related-product-card {
+            width: 350px;
+            height: 500px;
+            background: #D9C0A3;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 36px 0 0 0;
+            box-sizing: border-box;
+            position: relative;
+        }
+        .related-product-image {
+            width: 260px;
+            height: 300px;
+            background: #D9D9D9;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-bottom: 18px;
+        }
+        .related-product-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: #000;
+            margin-bottom: 8px;
+            width: 90%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .related-product-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: #000;
+            margin-bottom: 18px;
+            width: 90%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .related-product-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+            margin-bottom: 24px;
+        }
+        .related-btn {
+            width: 140px;
+            height: 44px;
+            background: #D7D7D9;
+            border-radius: 8px;
+            border: none;
+            font-family: 'Markazi Text', serif;
+            font-size: 24px;
+            color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 7px 22px;
+            transition: background 0.2s;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-align: center;
+        }
+        .related-btn:hover {
+            background: #cfcfcf;
+        }
+
+        .wishlist-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 2;
+            width: 40px;
+            height: 40px;
+            background: #2C2C2C;
+            border-radius: 32px;
+            border: none;
+            outline: 1px solid #2C2C2C;
+            outline-offset: -1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            transition: background 0.2s;
+            color: #F5F5F5;
+            font-size: 22px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .wishlist-btn:focus {
+            outline: none;
+        }
+        .wishlist-btn:hover {
+            background: #444;
+            color: #fff;
+        }
+        .wishlist-btn .bi-heart {
+            font-size: 20px;
+            color: #F5F5F5;
+        }
+
+        @media (max-width: 768px) {
+            .product-detail-wrapper {
+                flex-direction: column;
+                gap: 30px;
+                padding: 20px;
+            }
+
+            .product-title {
+                font-size: 1.4rem;
+            }
+
+            .sale-price {
+                font-size: 1.5rem;
+            }
+
+            .product-actions {
+                flex-direction: column;
+            }
+
+            .btn-add-to-cart {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Container - Loaded Dynamically -->
+    <div id="header-container"></div>
+    
+    <!-- Breadcrumb Navigation -->
+    <nav class="breadcrumb-nav" style="padding: 20px 0; background-color: #f5f5f5;">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0" style="font-family: 'Inter', sans-serif;">
+                    <li class="breadcrumb-item"><a href="index.html" style="color: #d4a574; text-decoration: none;">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="shop.html" style="color: #d4a574; text-decoration: none;">Sản phẩm</a></li>
+                    <li class="breadcrumb-item active">Chi tiết sản phẩm</li>
+                </ol>
+            </nav>
+        </div>
+    </nav>
+
+    <!-- Product Detail Section -->
+    <section class="products-section">
+        <div class="container">
+            <!-- Product Detail -->
+            <div id="product-detail-container">
+                <!-- Product detail will be loaded here -->
+            </div>
+
+            <!-- Product Description -->
+            <div id="product-description-container">
+                <!-- Product description will be loaded here -->
+            </div>
+
+            <!-- Reviews Section -->
+            <section class="reviews-section">
+                <h3 class="section-title">Đánh giá từ khách hàng</h3>
+                <div id="reviews-container">
+                    <!-- Reviews will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Related Products Section -->
+            <section class="related-section">
+                <h3 class="section-title">Sản phẩm tương tự</h3>
+                <div id="related-products-container">
+                    <!-- Related products will be loaded here -->
+                </div>
+            </section>
+        </div>
+    </section>
+    
+    <!-- Footer Container - Loaded Dynamically -->
+    <div id="footer-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="layout-loader.js"></script>
+    <script src="product-detail-renderer.js"></script>
+    
+    <!-- Initialize Product Detail Page -->
+    <script>
+        document.addEventListener('DOMContentLoaded', async function() {
+            const productId = new URLSearchParams(window.location.search).get('id');
+            const renderer = new ProductDetailRenderer('data/product-detail.json');
+            
+            let loaded = false;
+            if (productId) {
+                loaded = await renderer.loadById(productId);
+            }
+            
+            // Nếu không tìm thấy từ URL hoặc không có ID, load mặc định
+            if (!loaded) {
+                await renderer.load();
+            }
+            
+            renderer.renderProductDetail('product-detail-container');
+            renderer.renderProductDetails('product-description-container');
+            renderer.renderReviews('reviews-container');
+            renderer.renderRelatedProducts('related-products-container');
+            
+            // Update page title
+            if (renderer.data) {
+                document.title = renderer.data.name + ' - SuSu Toys Store';
+            }
+        });
+    </script>
+</body>
+</html>

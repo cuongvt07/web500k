@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuSu Toys Store - Sản Phẩm</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400;600&family=Playfair+Display:wght@400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .shop-container {
+            display: flex;
+            gap: 30px;
+            padding: 40px 0;
+        }
+
+        .sidebar-filter {
+            width: 350px;
+            flex-shrink: 0;
+        }
+
+        .products-list {
+            flex: 1;
+        }
+
+        .filter-section {
+            background-color: #d9c0a3;
+            border: 1px solid #333;
+            border-radius: 8px;
+            margin-bottom: 0;
+            overflow: hidden;
+        }
+
+        .filter-header {
+            background-color: #d9d9d9;
+            padding: 15px 20px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #000;
+            border-bottom: 1px solid #333;
+        }
+
+        .filter-item {
+            padding: 12px 20px;
+            border-bottom: 1px solid #c9b8a3;
+            cursor: pointer;
+            font-family: 'Markazi Text', serif;
+            font-size: 1rem;
+            color: #000;
+            transition: background-color 0.3s;
+        }
+
+        .filter-item:last-child {
+            border-bottom: none;
+        }
+
+        .filter-item:hover {
+            background-color: #e8d7c3;
+        }
+
+        .filter-item input[type="checkbox"] {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .filter-item label {
+            cursor: pointer;
+            margin: 0;
+        }
+
+        @media (max-width: 1024px) {
+            .shop-container {
+                flex-direction: column;
+            }
+
+            .sidebar-filter {
+                width: 100%;
+            }
+
+            .filter-section {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Container - Loaded Dynamically -->
+    <div id="header-container"></div>
+    
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+        <div class="container">
+            <img src="images/banner3 2.png" alt="Banner" class="img-fluid">
+        </div>
+    </section>
+    
+    <!-- Category Header -->
+    <div class="category-header">
+        <div class="container">
+            <nav class="d-flex justify-content-around">
+                <a href="index.html" class="nav-link-custom">Trang Chủ</a>
+                <a href="shop.html" class="nav-link-custom">Hàng Mới</a>
+                <a href="#" class="nav-link-custom">Danh Mục</a>
+                <a href="cart.html" class="nav-link-custom">Khuyến Mãi</a>
+            </nav>
+        </div>
+    </div>
+    
+    <!-- Shop Section with Sidebar Filter -->
+    <section class="products-section">
+        <div class="container">
+            <div class="shop-container">
+                <!-- Sidebar Filter -->
+                <aside class="sidebar-filter" id="sidebar-filter">
+                    <!-- Filter sections will be loaded here -->
+                </aside>
+
+                <!-- Products List -->
+                <div class="products-list">
+                    <h2 class="mb-4">Tất Cả Sản Phẩm</h2>
+                    <div id="products-container">
+                        <!-- Products will be loaded here by data-loader.js -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer Container - Loaded Dynamically -->
+    <div id="footer-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="layout-loader.js"></script>
+    <script src="data-loader.js"></script>
+    
+    <!-- Initialize Data Loader and Filter -->
+    <script>
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Load filter data
+            const filterResponse = await fetch('data/filter-data.json');
+            const filterData = await filterResponse.json();
+            renderFilters(filterData);
+
+            // Load products
+            const loader = new DataLoader('data/data-shop.json');
+            await loader.load();
+            loader.renderProducts('products-container');
+            document.title = 'SuSu Toys Store - ' + loader.getTitle();
+        });
+
+        // Render filter sidebar
+        function renderFilters(data) {
+            const sidebar = document.getElementById('sidebar-filter');
+            let html = '';
+
+            // Categories Filter
+            html += '<div class="filter-section">';
+            html += '<div class="filter-header">Danh mục sản phẩm</div>';
+            data.categories.forEach(cat => {
+                html += `
+                    <div class="filter-item">
+                        <input type="checkbox" id="cat-${cat.id}" value="${cat.id}">
+                        <label for="cat-${cat.id}">${cat.name}</label>
+                    </div>
+                `;
+            });
+            html += '</div>';
+
+            // Types Filter
+            html += '<div class="filter-section">';
+            html += '<div class="filter-header">Loại sản phẩm</div>';
+            data.types.forEach(type => {
+                html += `
+                    <div class="filter-item">
+                        <input type="checkbox" id="type-${type.id}" value="${type.id}">
+                        <label for="type-${type.id}">${type.name}</label>
+                    </div>
+                `;
+            });
+            html += '</div>';
+
+            // Ages Filter
+            html += '<div class="filter-section">';
+            html += '<div class="filter-header">Lứa tuổi</div>';
+            data.ages.forEach(age => {
+                html += `
+                    <div class="filter-item">
+                        <input type="checkbox" id="age-${age.id}" value="${age.id}">
+                        <label for="age-${age.id}">${age.name}</label>
+                    </div>
+                `;
+            });
+            html += '</div>';
+
+            // Price Filter
+            html += '<div class="filter-section">';
+            html += '<div class="filter-header">Mức giá</div>';
+            data.prices.forEach(price => {
+                html += `
+                    <div class="filter-item">
+                        <input type="radio" id="price-${price.id}" name="price" value="${price.id}">
+                        <label for="price-${price.id}">${price.name}</label>
+                    </div>
+                `;
+            });
+            html += '</div>';
+
+            sidebar.innerHTML = html;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!-- Header -->
+<header class="top-header">
+    <div class="container-fluid px-5">
+        <div class="row align-items-center">
+            <div class="col-auto">
+                <img src="images/logo 1.png" alt="SuSu Logo" class="logo">
+            </div>
+            <div class="col">
+                <form class="search-box" role="search">
+                    <img class="search-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAGESURBVHgB7ZY7TkJREIZ/QWnEEhIbFwDuQSy0shCibIFgiI9dENeglY+taIyNaCIGtDRaQ6GFj39y5+SekAjOgQAFf/Ll3uTMzH84j+ECM02RUqRMLkmTdBV5v9CxFEasEnkmPwNokyJGoAQ59grfkX2SI4tKnhyQhhdX19xgOdMPUhlQTMaqGuvMg1TyTNcMeQXPfBtGySFxe1qBXXua2yILlsQy4j0N2askudcaO/0Ce4u7k3lCvmHXFznVd9NyPyGabQ7hymuNpiWpo0lphGtJa3T6BQ115/7Q3H+Ceo1f9bmCcLncNxiMb/W5gXBt6vMaBrnr1ED4dXrQGruWRGkgbU2swq6a5r6QeRhVRNwyC4a8dfKpuVsIVN0zlzaY7BMrYzXP9J1kEKiEZy5IGzxE1BzSyio5QrynztTFZzGEpO21MPhDQPZUljeDuFcPbS7/MtLwz8kjoo7U1QmdITq9/kHKjtLcKvnl7stEJruMMWqi5v6y32DMEnNpxVeYaRL6BVuLednnla1/AAAAAElFTkSuQmCC" alt="search">
+                    <input type="text" class="form-control search-input" placeholder="Tìm kiếm">
+                    <button class="btn search-btn" type="submit">Tìm kiếm</button>
+                </form>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col">
+                <nav class="d-flex justify-content-around">
+                    <a href="index.html" class="nav-link-custom">Trang chủ</a>
+                    <a href="shop.html" class="nav-link-custom">Sản phẩm</a>
+                    <a href="#" class="nav-link-custom">Danh mục</a>
+                    <a href="cart.html" class="nav-link-custom">Giỏ hàng</a>
+                    <a href="login.html" class="nav-link-custom">Đăng nhập</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+<style>
+    .search-box {
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        height: 44px;
+        padding: 0;
+        border: 1px solid #000;
+        display: flex;
+        align-items: center;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .search-icon {
+        width: 30px;
+        height: 30px;
+        margin-left: 14px;
+        margin-right: 8px;
+        flex-shrink: 0;
+    }
+    .search-input {
+        border: none;
+        box-shadow: none;
+        height: 44px;
+        font-size: 1.1rem;
+        padding: 0 12px;
+        background: transparent;
+        border-radius: 8px 0 0 8px;
+        flex: 1 1 0%;
+        font-family: 'Inter', sans-serif;
+    }
+    .search-input:focus {
+        outline: none;
+        box-shadow: none;
+    }
+    .search-btn {
+        height: 44px;
+        min-width: 132px;
+        font-size: 24px;
+        border-radius: 0 8px 8px 0;
+        background: #D7D7D9;
+        color: #000;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 22px;
+        font-family: 'Markazi Text', serif;
+        font-weight: 400;
+        outline: 1px solid #000;
+        outline-offset: -1px;
+        transition: background 0.2s;
+        box-shadow: none;
+    }
+    .search-btn:hover {
+        background: #cfcfcf;
+    }
+</style>
