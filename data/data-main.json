@@ -7,63 +7,72 @@
       "name": "Bộ Lego RACING Cam",
       "image": "images/Rectangle 3.png",
       "originalPrice": 1800000,
-      "salePrice": 1200000
+      "salePrice": 1200000,
+      "new": true
     },
     {
       "id": 2,
       "name": "Bộ Lego City Police Station",
       "image": "images/Rectangle 3.png",
       "originalPrice": 2500000,
-      "salePrice": 2000000
+      "salePrice": 2000000,
+      "new": false
     },
     {
       "id": 3,
       "name": "Bộ Lego Friends Beach House",
       "image": "images/Rectangle 3.png",
       "originalPrice": null,
-      "salePrice": 1500000
+      "salePrice": 1500000,
+      "new": true
     },
     {
       "id": 4,
       "name": "Bộ Lego Technic Monster Truck",
       "image": "images/Rectangle 3.png",
       "originalPrice": 3200000,
-      "salePrice": 2800000
+      "salePrice": 2800000,
+      "new": false
     },
     {
       "id": 5,
       "name": "Bộ Lego Ninjago Dragon Temple",
       "image": "images/Rectangle 3.png",
       "originalPrice": null,
-      "salePrice": 2200000
+      "salePrice": 2200000,
+      "new": false
     },
     {
       "id": 6,
       "name": "Bộ Lego Creator 3in1 Dinosaur",
       "image": "images/Rectangle 3.png",
       "originalPrice": 1600000,
-      "salePrice": 1300000
+      "salePrice": 1300000,
+      "new": true
     },
     {
       "id": 7,
       "name": "Bộ Lego Marvel Avengers Tower",
       "image": "images/Rectangle 3.png",
       "originalPrice": null,
-      "salePrice": 3500000
+      "salePrice": 3500000,
+      "new": false
     },
     {
       "id": 8,
       "name": "Bộ Lego Harry Potter Hogwarts Castle",
       "image": "images/Rectangle 3.png",
       "originalPrice": 4500000,
-      "salePrice": 4000000
+      "salePrice": 4000000,
+      "new": true
     },
     {
       "id": 9,
       "name": "Bộ Lego Star Wars Millennium Falcon",
       "image": "images/Rectangle 3.png",
       "originalPrice": null,
-      "salePrice": 5200000
+      "salePrice": 5200000,
+      "new": false
     }
   ]
 }

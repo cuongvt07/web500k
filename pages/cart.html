@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400;600&family=Playfair+Display:wght@400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <style>
         .cart-items {
             margin-bottom: 30px;
@@ -55,12 +55,11 @@
     <!-- Cart Section - Loaded Dynamically from JSON -->
     <section class="products-section">
         <div class="container">
-            <h2 class="mb-4">Giỏ Hàng</h2>
-            <div id="cart-container">
-                <!-- Cart items will be loaded here by data-loader.js -->
+            <h2 class="mb-4" style="color: #F47C3C; font-size: 48px; font-family: 'Markazi Text', serif; font-weight: 700; text-align: center;">Giỏ hàng của bạn</h2>
+            <div id="cart-container"></div>
+            <div class="d-flex justify-content-center gap-4 mt-4">
+                <button id="btn-back-home" class="btn btn-light btn-lg" style="font-family: 'Markazi Text', serif; font-size: 24px; font-weight: 700;">Về trang chủ</button>
             </div>
-            <button class="btn btn-primary btn-lg mt-4">Tiếp Tục Mua Sắm</button>
-            <button class="btn btn-success btn-lg mt-4 ms-2">Thanh Toán</button>
         </div>
     </section>
     
@@ -68,16 +67,19 @@
     <div id="footer-container"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="layout-loader.js"></script>
-    <script src="data-loader.js"></script>
-    
-    <!-- Initialize Data Loader for Cart Page -->
+    <script src="../js/layout-loader.js"></script>
+    <script src="../js/notifications.js"></script>
+    <script src="../js/data-loader.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', async function() {
-            const loader = new DataLoader('data/data-cart.json');
+            const loader = new DataLoader('../data/data-cart.json');
             await loader.load();
             loader.renderCart('cart-container');
             document.title = 'SuSu Toys Store - ' + loader.getTitle();
+
+            document.getElementById('btn-back-home').onclick = function() {
+                window.location.href = 'index.html';
+            };
         });
     </script>
 </body>

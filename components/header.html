@@ -1,9 +1,11 @@
 <!-- Header -->
 <header class="top-header">
-    <div class="container-fluid px-5">
-        <div class="row align-items-center">
+    <div class="container px-2">
+        <div class="row align-items-center d-none d-md-flex">
             <div class="col-auto">
-                <img src="images/logo 1.png" alt="SuSu Logo" class="logo">
+                <a href="index.html" style="text-decoration: none;">
+                    <img src="../images/logo 1.png" alt="SuSu Logo" class="logo" style="cursor: pointer;">
+                </a>
             </div>
             <div class="col">
                 <form class="search-box" role="search">
@@ -13,7 +15,34 @@
                 </form>
             </div>
         </div>
-        <div class="row mt-3">
+        <!-- Mobile header -->
+        <div class="row align-items-center d-flex d-md-none" style="height:60px;">
+            <div class="col-auto d-flex align-items-center" style="height:60px;">
+                <!-- Menu dropdown -->
+                <div class="dropdown">
+                    <button id="menu-toggle-btn" class="btn btn-link p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size:32px;color:#222;">
+                        <i class="bi bi-list"></i>
+                    </button>
+                    <ul class="dropdown-menu" style="min-width:140px;">
+                        <li><a class="dropdown-item" href="index.html">Trang chủ</a></li>
+                        <li><a class="dropdown-item" href="shop.html">Sản phẩm</a></li>
+                        <li><a class="dropdown-item" href="#">Danh mục</a></li>
+                        <li><a class="dropdown-item" href="cart.html">Giỏ hàng</a></li>
+                        <li><a class="dropdown-item" href="login.html">Đăng nhập</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-auto d-flex align-items-center" style="height:60px;">
+                <a href="index.html" style="text-decoration:none;display:flex;align-items:center;height:60px;">
+                    <img src="../images/logo 1.png" alt="SuSu Logo" class="logo" style="width:48px;height:48px;object-fit:contain;">
+                </a>
+            </div>
+            <div class="col d-flex justify-content-end align-items-center" style="height:60px;gap:18px;">
+                <a href="login.html" style="color:#222;font-size:32px;"><i class="bi bi-person"></i></a>
+                <a href="cart.html" style="color:#222;font-size:32px;"><i class="bi bi-cart"></i></a>
+            </div>
+        </div>
+        <div class="row mt-3 d-none d-md-flex">
             <div class="col">
                 <nav class="d-flex justify-content-around">
                     <a href="index.html" class="nav-link-custom">Trang chủ</a>
@@ -84,4 +113,31 @@
     .search-btn:hover {
         background: #cfcfcf;
     }
+    @media (max-width: 576px) {
+        .search-box {
+            display: none;
+        }
+        .logo {
+            width: 48px;
+            height: 48px;
+        }
+        .nav-link-custom {
+            display: block;
+            padding: 10px 0;
+            font-size: 1rem;
+            text-align: left;
+        }
+    }
 </style>
+<script>
+    // Mobile menu toggle
+    document.addEventListener('DOMContentLoaded', function() {
+        var menuBtn = document.getElementById('menu-toggle-btn');
+        var nav = document.getElementById('main-nav');
+        if (menuBtn && nav) {
+            menuBtn.addEventListener('click', function() {
+                nav.classList.toggle('active');
+            });
+        }
+    });
+</script>

@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400;600&family=Playfair+Display:wght@400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <style>
         .product-detail-wrapper {
             display: flex;
@@ -129,7 +129,7 @@
 
         .original-price {
             font-family: 'Inter', sans-serif;
-            font-size: 2.5rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: #1E1E1E;
             text-decoration: line-through;
@@ -400,7 +400,9 @@
             font-size: 1.5rem;
             font-weight: 600;
             margin-bottom: 30px;
-            color: #333;
+            color: #fff;
+            text-align: center;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.18);
         }
 
         .related-products-row {
@@ -590,34 +592,46 @@
     <div id="footer-container"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="layout-loader.js"></script>
-    <script src="product-detail-renderer.js"></script>
+    <script src="../js/layout-loader.js"></script>
+    <script src="../js/notifications.js"></script>
+    <script src="../js/product-detail-renderer.js"></script>
     
     <!-- Initialize Product Detail Page -->
     <script>
         document.addEventListener('DOMContentLoaded', async function() {
             const productId = new URLSearchParams(window.location.search).get('id');
-            const renderer = new ProductDetailRenderer('data/product-detail.json');
+            const renderer = new ProductDetailRenderer('../data/product-detail.json');
             
             let loaded = false;
             if (productId) {
                 loaded = await renderer.loadById(productId);
             }
-            
             // Nếu không tìm thấy từ URL hoặc không có ID, load mặc định
             if (!loaded) {
                 await renderer.load();
             }
-            
             renderer.renderProductDetail('product-detail-container');
             renderer.renderProductDetails('product-description-container');
             renderer.renderReviews('reviews-container');
             renderer.renderRelatedProducts('related-products-container');
-            
             // Update page title
             if (renderer.data) {
                 document.title = renderer.data.name + ' - SuSu Toys Store';
             }
+
+            // Thêm sự kiện cho nút wishlist (bi-heart)
+            setTimeout(function() {
+                document.querySelectorAll('.wishlist-btn').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        if (typeof showToast === 'function') {
+                            showToast('Đã thêm vào danh sách yêu thích!', 'success');
+                        } else {
+                            alert('Đã thêm vào danh sách yêu thích!');
+                        }
+                    });
+                });
+            }, 300);
         });
     </script>
 </body>

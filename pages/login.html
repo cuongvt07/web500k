@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuSu Toys Store - Đăng Nhập</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400;600&family=Playfair+Display:wght@400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        /* Page background container to match the provided design */
+        .auth-page {
+            background: #638C45;
+            min-height: calc(100vh - 120px);
+        }
+
+        .auth-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 48px 24px 72px;
+            position: relative;
+        }
+
+        .auth-title {
+            color: #401201;
+            font-family: 'Markazi Text', serif;
+            font-weight: 700;
+            font-size: 60px;
+            line-height: 1;
+        }
+
+        .auth-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            margin-top: 16px;
+        }
+
+        .panel {
+            padding-top: 24px;
+        }
+
+        .field {
+            height: 44px;
+            background: #D7D7D9;
+            border-radius: 8px;
+            display: grid;
+            grid-template-columns: 44px 1fr;
+            align-items: center;
+            margin-bottom: 20px;
+            outline: 1px solid #000;
+            outline-offset: -1px;
+        }
+
+        .field .icon {
+            width: 30px;
+            height: 30px;
+            margin-left: 7px;
+            color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .field input {
+            border: none;
+            background: transparent;
+            height: 44px;
+            padding: 0 12px;
+            font-size: 24px;
+            font-family: 'Markazi Text', serif;
+            font-weight: 400;
+            color: #000;
+            outline: none;
+        }
+
+        .auth-actions {
+            margin-top: 16px;
+        }
+
+        .btn-auth {
+            height: 44px;
+            min-width: 200px;
+            padding: 7px 22px;
+            background: #D7D7D9;
+            border-radius: 8px;
+            color: #000;
+            font-size: 24px;
+            font-family: 'Markazi Text', serif;
+            font-weight: 700;
+            border: none;
+            outline: 1px solid #000;
+            outline-offset: -1px;
+        }
+
+        .btn-auth:hover { filter: brightness(0.95); }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .auth-title { font-size: 42px; }
+            .auth-columns { grid-template-columns: 1fr; gap: 32px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Container - Loaded Dynamically -->
+    <div id="header-container"></div>
+    
+    <!-- Auth Section -->
+    <section class="auth-page">
+        <div class="auth-wrapper">
+            <!-- Mobile: chỉ hiển thị 1 khối, có nút chuyển -->
+            <div class="d-block d-md-none">
+                <div id="mobile-auth-title" class="auth-title mb-3">Đăng nhập</div>
+                <div id="mobile-login-panel" class="panel">
+                    <div id="login-form">
+                        <div class="field">
+                            <div class="icon"><i class="bi bi-person"></i></div>
+                            <input type="text" id="login_identifier" name="identifier" placeholder="Tên đăng nhập">
+                        </div>
+                        <div class="field">
+                            <div class="icon"><i class="bi bi-shield-lock"></i></div>
+                            <input type="password" id="login_password" name="password" placeholder="Mật khẩu">
+                        </div>
+                        <div class="auth-actions d-flex flex-column gap-2">
+                            <button type="button" class="btn-auth" id="btn-login">Đăng nhập</button>
+                            <button type="button" class="btn btn-link p-0" id="show-register" style="font-size:18px;">Chưa có tài khoản? Đăng kí</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="mobile-register-panel" class="panel" style="display:none;">
+                    <div id="register-form">
+                        <div class="field">
+                            <div class="icon"><i class="bi bi-person"></i></div>
+                            <input type="text" id="reg_fullname" name="fullname" placeholder="Tên khách hàng">
+                        </div>
+                        <div class="field">
+                            <div class="icon"><i class="bi bi-person"></i></div>
+                            <input type="text" id="reg_fullname" name="fullname" placeholder="Tên khách hàng">
+                        </div>
+                        <div class="field">
+                            <div class="icon"><i class="bi bi-at"></i></div>
+                            <input type="text" id="reg_username" name="username" placeholder="Tên đăng nhập">
+                        </div>
+                        <div class="field">
+                            <div class="icon"><i class="bi bi-shield-lock"></i></div>
+                            <input type="password" id="reg_password" name="password" placeholder="Mật khẩu">
+                        </div>
+                        <div class="field">
+                            <div class="icon"><i class="bi bi-telephone"></i></div>
+                            <input type="tel" id="reg_phone" name="phone" placeholder="Số điện thoại">
+                        </div>
+                        <div class="field">
+                            <div class="icon"><i class="bi bi-envelope"></i></div>
+                            <input type="email" id="reg_email" name="email" placeholder="Email">
+                        </div>
+                        <div class="auth-actions d-flex flex-column gap-2">
+                            <button type="button" class="btn-auth" id="btn-register">Đăng kí</button>
+                            <button type="button" class="btn btn-link p-0" id="show-login" style="font-size:18px;">Đã có tài khoản? Đăng nhập</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Desktop: 2 panel song song -->
+            <div class="auth-columns d-none d-md-grid">
+                <div class="panel" id="register-panel">
+                    <div class="auth-title">Đăng kí thành viên</div>
+                    <div id="register-form-desktop">
+                        <div class="field">
+                            <div class="icon"><i class="bi bi-person"></i></div>
+                            <input type="text" id="reg_fullname_desktop" name="fullname" placeholder="Tên khách hàng">
+                        </div>
+                        <div class="field">
+                            <div class="icon"><i class="bi bi-at"></i></div>
+                            <input type="text" id="reg_username_desktop" name="username" placeholder="Tên đăng nhập">
+                        </div>
+                        <div class="field">
+                            <div class="icon"><i class="bi bi-shield-lock"></i></div>
+                            <input type="password" id="reg_password_desktop" name="password" placeholder="Mật khẩu">
+                        </div>
+                        <div class="field">
+                            <div class="icon"><i class="bi bi-telephone"></i></div>
+                            <input type="tel" id="reg_phone_desktop" name="phone" placeholder="Số điện thoại">
+                        </div>
+                        <div class="field">
+                            <div class="icon"><i class="bi bi-envelope"></i></div>
+                            <input type="email" id="reg_email_desktop" name="email" placeholder="Email">
+                        </div>
+                        <div class="auth-actions">
+                            <button type="button" class="btn-auth" id="btn-register-desktop">Đăng kí</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel" id="login-panel">
+                    <div class="auth-title">Đăng nhập</div>
+                    <div id="login-form-desktop">
+                        <div class="field">
+                            <div class="icon"><i class="bi bi-person"></i></div>
+                            <input type="text" id="login_identifier_desktop" name="identifier" placeholder="Tên đăng nhập">
+                        </div>
+                        <div class="field">
+                            <div class="icon"><i class="bi bi-shield-lock"></i></div>
+                            <input type="password" id="login_password_desktop" name="password" placeholder="Mật khẩu">
+                        </div>
+                        <div class="auth-actions">
+                            <button type="button" class="btn-auth" id="btn-login-desktop">Đăng nhập</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <script>
+    // Mobile: chuyển đổi panel đăng nhập/đăng ký
+    document.addEventListener('DOMContentLoaded', function() {
+        var showRegisterBtn = document.getElementById('show-register');
+        var showLoginBtn = document.getElementById('show-login');
+        var loginPanel = document.getElementById('mobile-login-panel');
+        var registerPanel = document.getElementById('mobile-register-panel');
+        var title = document.getElementById('mobile-auth-title');
+        if (showRegisterBtn && showLoginBtn && loginPanel && registerPanel && title) {
+            showRegisterBtn.onclick = function() {
+                loginPanel.style.display = 'none';
+                registerPanel.style.display = '';
+                title.textContent = 'Đăng kí thành viên';
+            };
+            showLoginBtn.onclick = function() {
+                registerPanel.style.display = 'none';
+                loginPanel.style.display = '';
+                title.textContent = 'Đăng nhập';
+            };
+        }
+    });
+    </script>
+        </div>
+    </section>
+    
+    <!-- Footer Container - Loaded Dynamically -->
+    <div id="footer-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/layout-loader.js"></script>
+    <script src="../js/notifications.js"></script>
+    <script>
+        // Simple localStorage-based auth for demo purposes
+        const USERS_KEY = 'susu_users';
+        const CURRENT_USER_KEY = 'susu_current_user';
+
+        function readUsers() {
+            try { return JSON.parse(localStorage.getItem(USERS_KEY)) || []; } catch { return []; }
+        }
+        function writeUsers(users) { localStorage.setItem(USERS_KEY, JSON.stringify(users)); }
+        function setCurrentUser(user) { localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(user)); }
+
+        function findUser(identifier) {
+            const users = readUsers();
+            const idLower = (identifier || '').toLowerCase();
+            return users.find(u => (u.username || '').toLowerCase() === idLower || (u.email || '').toLowerCase() === idLower);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Register Mobile
+            const btnRegister = document.getElementById('btn-register');
+            if (btnRegister) {
+                btnRegister.addEventListener('click', () => {
+                    const fullname = document.getElementById('reg_fullname').value.trim();
+                    const username = document.getElementById('reg_username').value.trim();
+                    const password = document.getElementById('reg_password').value;
+                    const phone = document.getElementById('reg_phone').value.trim();
+                    const email = document.getElementById('reg_email').value.trim();
+
+                    if (!fullname || !username || !password) {
+                        showToast('Vui lòng nhập đầy đủ Họ tên, Tên đăng nhập và Mật khẩu.');
+                        return;
+                    }
+
+                    const users = readUsers();
+                    if (users.some(u => u.username?.toLowerCase() === username.toLowerCase())) {
+                        showToast('Tên đăng nhập đã tồn tại.');
+                        return;
+                    }
+                    if (email && users.some(u => (u.email||'').toLowerCase() === email.toLowerCase())) {
+                        showToast('Email đã được sử dụng.');
+                        return;
+                    }
+
+                    const newUser = { fullname, username, password, phone, email, createdAt: new Date().toISOString() };
+                    users.push(newUser);
+                    writeUsers(users);
+                    setCurrentUser({ username, fullname, email });
+                    showToast('Đăng kí thành công!', 'success');
+                    setTimeout(() => window.location.href = 'index.html', 1500);
+                });
+            }
+
+            // Login Mobile
+            const btnLogin = document.getElementById('btn-login');
+            if (btnLogin) {
+                btnLogin.addEventListener('click', () => {
+                    const identifier = document.getElementById('login_identifier').value.trim();
+                    const password = document.getElementById('login_password').value;
+                    const user = findUser(identifier);
+                    if (!user || user.password !== password) {
+                        showToast('Sai thông tin đăng nhập.', 'error');
+                        return;
+                    }
+                    setCurrentUser({ username: user.username, fullname: user.fullname, email: user.email });
+                    showToast('Đăng nhập thành công!', 'success');
+                    setTimeout(() => window.location.href = 'index.html', 1500);
+                });
+            }
+
+            // Register Desktop
+            const btnRegisterDesktop = document.getElementById('btn-register-desktop');
+            if (btnRegisterDesktop) {
+                btnRegisterDesktop.addEventListener('click', () => {
+                    const fullname = document.getElementById('reg_fullname_desktop').value.trim();
+                    const username = document.getElementById('reg_username_desktop').value.trim();
+                    const password = document.getElementById('reg_password_desktop').value;
+                    const phone = document.getElementById('reg_phone_desktop').value.trim();
+                    const email = document.getElementById('reg_email_desktop').value.trim();
+
+                    if (!fullname || !username || !password) {
+                        showToast('Vui lòng nhập đầy đủ Họ tên, Tên đăng nhập và Mật khẩu.');
+                        return;
+                    }
+
+                    const users = readUsers();
+                    if (users.some(u => u.username?.toLowerCase() === username.toLowerCase())) {
+                        showToast('Tên đăng nhập đã tồn tại.');
+                        return;
+                    }
+                    if (email && users.some(u => (u.email||'').toLowerCase() === email.toLowerCase())) {
+                        showToast('Email đã được sử dụng.');
+                        return;
+                    }
+
+                    const newUser = { fullname, username, password, phone, email, createdAt: new Date().toISOString() };
+                    users.push(newUser);
+                    writeUsers(users);
+                    setCurrentUser({ username, fullname, email });
+                    showToast('Đăng kí thành công!', 'success');
+                    setTimeout(() => window.location.href = 'index.html', 1500);
+                });
+            }
+
+            // Login Desktop
+            const btnLoginDesktop = document.getElementById('btn-login-desktop');
+            if (btnLoginDesktop) {
+                btnLoginDesktop.addEventListener('click', () => {
+                    const identifier = document.getElementById('login_identifier_desktop').value.trim();
+                    const password = document.getElementById('login_password_desktop').value;
+                    const user = findUser(identifier);
+                    if (!user || user.password !== password) {
+                        showToast('Sai thông tin đăng nhập.', 'error');
+                        return;
+                    }
+                    setCurrentUser({ username: user.username, fullname: user.fullname, email: user.email });
+                    showToast('Đăng nhập thành công!', 'success');
+                    setTimeout(() => window.location.href = 'index.html', 1500);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

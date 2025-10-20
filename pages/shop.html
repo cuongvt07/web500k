@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400;600&family=Playfair+Display:wght@400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <style>
         .shop-container {
             display: flex;
@@ -16,7 +16,7 @@
         }
 
         .sidebar-filter {
-            width: 350px;
+            width: 250px;
             flex-shrink: 0;
         }
 
@@ -96,18 +96,6 @@
         </div>
     </section>
     
-    <!-- Category Header -->
-    <div class="category-header">
-        <div class="container">
-            <nav class="d-flex justify-content-around">
-                <a href="index.html" class="nav-link-custom">Trang Chủ</a>
-                <a href="shop.html" class="nav-link-custom">Hàng Mới</a>
-                <a href="#" class="nav-link-custom">Danh Mục</a>
-                <a href="cart.html" class="nav-link-custom">Khuyến Mãi</a>
-            </nav>
-        </div>
-    </div>
-    
     <!-- Shop Section with Sidebar Filter -->
     <section class="products-section">
         <div class="container">
@@ -132,19 +120,19 @@
     <div id="footer-container"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="layout-loader.js"></script>
-    <script src="data-loader.js"></script>
+    <script src="../js/layout-loader.js"></script>
+    <script src="../js/data-loader.js"></script>
     
     <!-- Initialize Data Loader and Filter -->
     <script>
         document.addEventListener('DOMContentLoaded', async function() {
             // Load filter data
-            const filterResponse = await fetch('data/filter-data.json');
+            const filterResponse = await fetch('../data/filter-data.json');
             const filterData = await filterResponse.json();
             renderFilters(filterData);
 
             // Load products
-            const loader = new DataLoader('data/data-shop.json');
+            const loader = new DataLoader('../data/data-shop.json');
             await loader.load();
             loader.renderProducts('products-container');
             document.title = 'SuSu Toys Store - ' + loader.getTitle();

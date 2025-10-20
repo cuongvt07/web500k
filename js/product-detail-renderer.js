@@ -74,6 +74,9 @@ class ProductDetailRenderer {
             return;
         }
 
+        const mainImagePath = this.data.mainImage.startsWith('http') ? this.data.mainImage : `../${this.data.mainImage}`;
+        const galleryImages = this.data.gallery.map(img => img.startsWith('http') ? img : `../${img}`);
+        
         let html = `
             <div class="product-detail-wrapper">
                 <!-- Product Images -->
@@ -82,10 +85,10 @@ class ProductDetailRenderer {
                         <button class="wishlist-btn" title="Yêu thích">
                             <i class="bi bi-heart"></i>
                         </button>
-                        <img id="main-product-image" src="${this.data.mainImage}" alt="${this.data.name}" class="img-fluid">
+                        <img id="main-product-image" src="${mainImagePath}" alt="${this.data.name}" class="img-fluid">
                     </div>
                     <div class="gallery-thumbnails">
-                        ${this.data.gallery.map((img, idx) => `
+                        ${galleryImages.map((img, idx) => `
                             <img src="${img}" alt="Gallery ${idx + 1}" class="thumbnail" onclick="document.getElementById('main-product-image').src='${img}'">
                         `).join('')}
                     </div>
@@ -124,7 +127,7 @@ class ProductDetailRenderer {
                     </div>
 
                     <!-- Buy Button Only -->
-                    <button class="btn-action btn-buy" onclick="alert('Mua ngay')">Mua ngay</button>
+                    <button class="btn-action btn-buy" onclick="if(typeof showToast==='function'){showToast('Đã thêm sản phẩm vào giỏ hàng!','success');}else{alert('Đã thêm vào giỏ hàng!');}">Mua ngay</button>
 
                     <!-- Description Section -->
                     <div class="product-description-box">
@@ -198,12 +201,13 @@ class ProductDetailRenderer {
 
         let html = '<div class="related-products-row">';
         related.forEach((product, idx) => {
+            const relatedImage = (product.image || product.mainImage).startsWith('http') ? (product.image || product.mainImage) : `../${product.image || product.mainImage}`;
             html += `
                 <div class="related-product-card">
-                    <img src="${product.image || product.mainImage}" alt="${product.name}" class="related-product-image">
+                    <img src="${relatedImage}" alt="${product.name}" class="related-product-image">
                     <div class="related-product-actions">
                         <a href="product-detail.html?id=${product.id || ''}" class="related-btn">Xem ngay</a>
-                        <button class="related-btn" onclick="alert('Thêm vào giỏ')">Thêm vào giỏ</button>
+                        <button class="related-btn" onclick="if(typeof showToast==='function'){showToast('Đã thêm sản phẩm vào giỏ hàng!','success');}else{alert('Đã thêm vào giỏ hàng!');}">Thêm vào giỏ</button>
                     </div>
                     <div class="related-product-name">Tên sản phẩm: ${product.name}</div>
                     <div class="related-product-price">Giá: ${this.formatPrice(product.salePrice)}</div>
