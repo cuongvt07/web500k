@@ -101,6 +101,13 @@
             .auth-title { font-size: 42px; }
             .auth-columns { grid-template-columns: 1fr; gap: 32px; }
         }
+        /* Mobile-only styling: make titles white and centered on small screens */
+        @media (max-width: 767.98px) {
+            .auth-title {
+                color: #ffffff;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -116,11 +123,11 @@
                 <div id="mobile-login-panel" class="panel">
                     <div id="login-form">
                         <div class="field">
-                            <div class="icon"><i class="bi bi-person"></i></div>
+                            <div class="icon"><img src="../images/Person.png" alt="user" style="width:30px;height:30px;"/></div>
                             <input type="text" id="login_identifier" name="identifier" placeholder="Tên đăng nhập">
                         </div>
                         <div class="field">
-                            <div class="icon"><i class="bi bi-shield-lock"></i></div>
+                            <div class="icon"><img src="../images/Key.png" alt="password" style="width:30px;height:30px;"/></div>
                             <input type="password" id="login_password" name="password" placeholder="Mật khẩu">
                         </div>
                         <div class="auth-actions d-flex flex-column gap-2">
@@ -132,27 +139,23 @@
                 <div id="mobile-register-panel" class="panel" style="display:none;">
                     <div id="register-form">
                         <div class="field">
-                            <div class="icon"><i class="bi bi-person"></i></div>
+                            <div class="icon"><img src="../images/Person.png" alt="user" style="width:30px;height:30px;"/></div>
                             <input type="text" id="reg_fullname" name="fullname" placeholder="Tên khách hàng">
                         </div>
                         <div class="field">
-                            <div class="icon"><i class="bi bi-person"></i></div>
-                            <input type="text" id="reg_fullname" name="fullname" placeholder="Tên khách hàng">
-                        </div>
-                        <div class="field">
-                            <div class="icon"><i class="bi bi-at"></i></div>
+                            <div class="icon"><img src="../images/Customer.png" alt="username" style="width:30px;height:30px;"/></div>
                             <input type="text" id="reg_username" name="username" placeholder="Tên đăng nhập">
                         </div>
                         <div class="field">
-                            <div class="icon"><i class="bi bi-shield-lock"></i></div>
+                            <div class="icon"><img src="../images/Key.png" alt="password" style="width:30px;height:30px;"/></div>
                             <input type="password" id="reg_password" name="password" placeholder="Mật khẩu">
                         </div>
                         <div class="field">
-                            <div class="icon"><i class="bi bi-telephone"></i></div>
+                            <div class="icon"><img src="../images/Phone.png" alt="phone" style="width:30px;height:30px;"/></div>
                             <input type="tel" id="reg_phone" name="phone" placeholder="Số điện thoại">
                         </div>
                         <div class="field">
-                            <div class="icon"><i class="bi bi-envelope"></i></div>
+                            <div class="icon"><img src="../images/Email.png" alt="email" style="width:30px;height:30px;"/></div>
                             <input type="email" id="reg_email" name="email" placeholder="Email">
                         </div>
                         <div class="auth-actions d-flex flex-column gap-2">
@@ -168,23 +171,23 @@
                     <div class="auth-title">Đăng kí thành viên</div>
                     <div id="register-form-desktop">
                         <div class="field">
-                            <div class="icon"><i class="bi bi-person"></i></div>
+                            <div class="icon"><img src="../images/Person.png" alt="user" style="width:30px;height:30px;"/></div>
                             <input type="text" id="reg_fullname_desktop" name="fullname" placeholder="Tên khách hàng">
                         </div>
                         <div class="field">
-                            <div class="icon"><i class="bi bi-at"></i></div>
+                            <div class="icon"><img src="../images/Customer.png" alt="username" style="width:30px;height:30px;"/></div>
                             <input type="text" id="reg_username_desktop" name="username" placeholder="Tên đăng nhập">
                         </div>
                         <div class="field">
-                            <div class="icon"><i class="bi bi-shield-lock"></i></div>
+                            <div class="icon"><img src="../images/Key.png" alt="password" style="width:30px;height:30px;"/></div>
                             <input type="password" id="reg_password_desktop" name="password" placeholder="Mật khẩu">
                         </div>
                         <div class="field">
-                            <div class="icon"><i class="bi bi-telephone"></i></div>
+                            <div class="icon"><img src="../images/Phone.png" alt="phone" style="width:30px;height:30px;"/></div>
                             <input type="tel" id="reg_phone_desktop" name="phone" placeholder="Số điện thoại">
                         </div>
                         <div class="field">
-                            <div class="icon"><i class="bi bi-envelope"></i></div>
+                            <div class="icon"><img src="../images/Email.png" alt="email" style="width:30px;height:30px;"/></div>
                             <input type="email" id="reg_email_desktop" name="email" placeholder="Email">
                         </div>
                         <div class="auth-actions">
@@ -196,11 +199,11 @@
                     <div class="auth-title">Đăng nhập</div>
                     <div id="login-form-desktop">
                         <div class="field">
-                            <div class="icon"><i class="bi bi-person"></i></div>
+                            <div class="icon"><img src="../images/Person.png" alt="user" style="width:30px;height:30px;"/></div>
                             <input type="text" id="login_identifier_desktop" name="identifier" placeholder="Tên đăng nhập">
                         </div>
                         <div class="field">
-                            <div class="icon"><i class="bi bi-shield-lock"></i></div>
+                            <div class="icon"><img src="../images/Key.png" alt="password" style="width:30px;height:30px;"/></div>
                             <input type="password" id="login_password_desktop" name="password" placeholder="Mật khẩu">
                         </div>
                         <div class="auth-actions">

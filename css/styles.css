@@ -425,3 +425,44 @@ body {
     opacity: 0.5;
     cursor: not-allowed;
 }
+
+/* Action buttons: light gray background (rgba(215,215,217,1)) and black text */
+#btn-back-home,
+#btn-checkout-inner,
+#btn-checkout,
+#btn-register,
+#btn-register-desktop,
+#btn-login,
+#btn-login-desktop,
+.btn-auth {
+    background: rgba(215, 215, 217, 1) !important;
+    color: #000 !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* Hover state - slightly darker gray for affordance */
+#btn-back-home:hover,
+#btn-checkout-inner:hover,
+#btn-checkout:hover,
+#btn-register:hover,
+#btn-register-desktop:hover,
+#btn-login:hover,
+#btn-login-desktop:hover,
+.btn-auth:hover {
+    background: rgba(200, 200, 200, 1) !important;
+    color: #000 !important;
+}
+
+/* Smooth transition for state changes */
+#btn-back-home,
+#btn-checkout-inner,
+#btn-checkout,
+#btn-register,
+#btn-register-desktop,
+#btn-login,
+#btn-login-desktop,
+.btn-auth {
+    transition: background 0.12s ease, color 0.12s ease;
+}
