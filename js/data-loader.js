@@ -70,6 +70,7 @@ class DataLoader {
 
             const newBadge = product.new ? '<span class="new-badge"><img src="../images/New.png" alt="NEW"></span>' : '';
             const productImage = product.image.startsWith('http') ? product.image : `../${product.image}`;
+            const dataName = (product.name || '').replace(/"/g, '&quot;');
 
             html += `
                 <div class="col-md-4">
@@ -84,6 +85,24 @@ class DataLoader {
                             <div class="product-name" style="cursor: pointer;">${product.name}</div>
                         </a>
                         <div class="product-price">Giá: ${priceHtml}</div>
+
+                        <!-- ACTIONS: Thêm vào giỏ & Mua ngay -->
+                        <div class="product-actions" style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
+                            <button class="btn-add" 
+                                data-id="${product.id}" 
+                                data-name="${dataName}" 
+                                data-price="${product.salePrice}" 
+                                data-image="${productImage}"
+                                onclick="addToCartFromButton(this)"
+                                type="button">Thêm vào giỏ hàng</button>
+                            <button class="btn-buy-now" 
+                                data-id="${product.id}" 
+                                data-name="${dataName}" 
+                                data-price="${product.salePrice}" 
+                                data-image="${productImage}"
+                                onclick="buyNowFromButton(this)"
+                                type="button">Mua ngay</button>
+                        </div>
                     </div>
                 </div>
             `;
@@ -156,7 +175,7 @@ class DataLoader {
             items.forEach((item, idx) => {
                 const itemImage = item.image.startsWith('http') ? item.image : `../${item.image}`;
                 html += `
-                    <div class="cart-item" style="background: #7A9B5A; border-radius: 10px; padding: 16px 20px; display: flex; align-items: center; margin-bottom: 18px; gap: 16px;">
+                    <div class="cart-item" style="background: #c4c4c4ff; border-radius: 10px; padding: 16px 20px; display: flex; align-items: center; margin-bottom: 18px; gap: 16px;">
                         <img src="${itemImage}" alt="${item.name}" class="cart-item-image" style="width: 90px; height: 90px; object-fit: contain; background: #fff; border-radius: 8px; flex-shrink: 0;">
                         <div style="flex: 1;">
                             <div style="font-size: 20px; font-family: 'Markazi Text', serif; font-weight: 700; color: #222; margin-bottom: 6px;">${item.name}</div>
@@ -336,3 +355,38 @@ class DataLoader {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = DataLoader;
 }
+
+/* ====== GLOBAL CART HELPERS (used by product action buttons) ====== */
+window.addToCartFromButton = function(btn) {
+    try {
+        const id = Number(btn.dataset.id);
+        const name = btn.dataset.name || '';
+        const price = Number(btn.dataset.price) || 0;
+        const image = btn.dataset.image || '';
+
+        const KEY = 'susu_cart';
+        const raw = localStorage.getItem(KEY);
+        const cart = raw ? JSON.parse(raw) : [];
+
+        const existing = cart.find(item => item.id === id);
+        if (existing) {
+            existing.quantity = (existing.quantity || 1) + 1;
+        } else {
+            cart.push({ id, name, price, quantity: 1, image });
+        }
+        localStorage.setItem(KEY, JSON.stringify(cart));
+
+        if (typeof showToast === 'function') {
+            showToast('Đã thêm vào giỏ hàng', 'success');
+        }
+    } catch (e) {
+        console.error('addToCartFromButton error', e);
+    }
+};
+
+window.buyNowFromButton = function(btn) {
+    // Thêm vào giỏ rồi chuyển đến trang cart
+    addToCartFromButton(btn);
+    // Redirect to cart page
+    window.location.href = 'cart.html';
+};

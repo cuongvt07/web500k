@@ -79,25 +79,26 @@
 /* Section title center, white, bold */
 .section-title {
     text-align: center;
-    color: #fff;
+    color: #333333;
     font-size: 2.2rem;
     font-family: 'Markazi Text', serif;
     font-weight: 700;
     letter-spacing: 1px;
     margin-bottom: 1.5rem;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    text-shadow: none;
 }
 body {
     font-family: 'Playfair Display', serif;
-    background-color: #78866b;
+    background-color: #ffffff;
     margin: 0;
     padding: 0;
 }
 
 /* Header Styles */
 .top-header {
-    background-color: #d4a574;
+    background-color: #ffffff;
     padding: 10px 0;
+    border-bottom: 1px solid #e9e9e9;
 }
 
 .logo {
@@ -144,7 +145,7 @@ body {
 }
 
 .category-header {
-    background-color: #d4a574;
+    background-color: #ffffff;
     padding: 15px 0;
     margin-top: 30px;
 }
@@ -169,12 +170,13 @@ body {
 }
 
 .product-card {
-    background-color: #d4a574;
+    background-color: #aaaaaaff;
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 30px;
     transition: transform 0.3s;
     position: relative;
+    height: -webkit-fill-available;
 }
 
 .product-card:hover {
@@ -235,10 +237,10 @@ body {
 
 /* Footer Styles */
 .footer {
-    background-color: #78866b;
-    border-top: 1px solid #5a6451;
+    background-color: #ffffff;
+    border-top: 1px solid #e9e9e9;
     padding: 50px 0 30px;
-    color: #fff;
+    color: #222222;
 }
 
 .footer-title {
@@ -246,12 +248,12 @@ body {
     font-weight: 600;
     font-size: 1rem;
     margin-bottom: 20px;
-    color: #fff;
+    color: #222222;
 }
 
 .footer-link {
     font-family: 'Inter', sans-serif;
-    color: #e0e0e0;
+    color: #333333;
     text-decoration: none;
     font-size: 1rem;
     line-height: 2;
@@ -260,25 +262,25 @@ body {
 }
 
 .footer-link:hover {
-    color: #fff;
+    color: #000;
 }
 
 .social-icons a {
     display: inline-block;
     width: 36px;
     height: 36px;
-    background-color: #5a6451;
+    background-color: #f0f0f0;
     border-radius: 50%;
     text-align: center;
     line-height: 36px;
-    color: #fff;
+    color: #000;
     margin-right: 12px;
     transition: background-color 0.3s;
     text-decoration: none;
 }
 
 .social-icons a:hover {
-    background-color: #d4a574;
+    background-color: #e9e9e9;
 }
 
 .footer-logo {
@@ -465,4 +467,58 @@ body {
 #btn-login-desktop,
 .btn-auth {
     transition: background 0.12s ease, color 0.12s ease;
+}
+
+/* Product action buttons inside product-card */
+.product-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.product-actions .btn-add,
+.product-actions .btn-buy-now {
+    height: 44px;
+    padding: 0 14px;
+    border-radius: 8px;
+    font-family: 'Markazi Text', serif;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    transition: background 0.12s, color 0.12s;
+}
+
+/* Add to cart: light gray (same as other action buttons) */
+.product-actions .btn-add {
+    background: rgba(215,215,217,1);
+    color: #000;
+    outline: 1px solid rgba(0,0,0,0.08);
+}
+
+/* Buy now: darker accent to highlight */
+.product-actions .btn-buy-now {
+    background: #333;
+    color: #fff;
+    outline: 1px solid rgba(0,0,0,0.08);
+}
+
+/* Hover states */
+.product-actions .btn-add:hover {
+    background: rgba(200,200,200,1);
+}
+.product-actions .btn-buy-now:hover {
+    background: #444;
+}
+
+/* Ensure buttons wrap nicely on small screens */
+@media (max-width: 576px) {
+    .product-actions {
+        flex-wrap: wrap;
+    }
+    .product-actions .btn-add,
+    .product-actions .btn-buy-now {
+        flex: 1 1 calc(50% - 8px);
+        min-width: 120px;
+    }
 }

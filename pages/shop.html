@@ -88,14 +88,7 @@
 <body>
     <!-- Header Container - Loaded Dynamically -->
     <div id="header-container"></div>
-    
-    <!-- Hero Banner -->
-    <section class="hero-banner">
-        <div class="container">
-            <img src="images/banner3 2.png" alt="Banner" class="img-fluid">
-        </div>
-    </section>
-    
+
     <!-- Shop Section with Sidebar Filter -->
     <section class="products-section">
         <div class="container">
@@ -134,8 +127,61 @@
             // Load products
             const loader = new DataLoader('../data/data-shop.json');
             await loader.load();
+
+            // Initial render (no filters)
             loader.renderProducts('products-container');
             document.title = 'SuSu Toys Store - ' + loader.getTitle();
+
+            // Filter handling (new + price)
+            const sidebar = document.getElementById('sidebar-filter');
+
+            function applyFilters() {
+                const newCheckbox = document.getElementById('cat-new');
+                const newChecked = !!(newCheckbox && newCheckbox.checked);
+
+                const priceSelected = sidebar.querySelector('input[name="price"]:checked');
+                let priceRange = null;
+                if (priceSelected && filterData && filterData.prices) {
+                    priceRange = filterData.prices.find(p => String(p.id) === String(priceSelected.value)) || null;
+                }
+
+                const anyFilter = newChecked || !!priceRange;
+                if (!anyFilter) {
+                    // No filter selected -> show default (with pagination)
+                    loader.renderProducts('products-container');
+                    return;
+                }
+
+                // Apply combined filter; show many items (no pagination) for filtered view
+                loader.renderProducts('products-container', {
+                    filter: (product) => {
+                        if (newChecked && !product.new) return false;
+                        if (priceRange) {
+                            const price = Number(product.salePrice || 0);
+                            if (price < (priceRange.min || 0) || price > (priceRange.max || Infinity)) return false;
+                        }
+                        return true;
+                    },
+                    itemsPerPage: 1000
+                });
+                // Scroll to results
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Listen to changes inside sidebar (checkboxes / radios)
+            sidebar.addEventListener('change', applyFilters);
+
+            // Optional: clicking filter-item toggles checkbox for better UX
+            sidebar.addEventListener('click', (e) => {
+                const item = e.target.closest('.filter-item');
+                if (!item) return;
+                const input = item.querySelector('input');
+                if (!input) return;
+                if (input.type === 'checkbox') {
+                    input.checked = !input.checked;
+                    input.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+            });
         });
 
         // Render filter sidebar
@@ -147,10 +193,12 @@
             html += '<div class="filter-section">';
             html += '<div class="filter-header">Danh mục sản phẩm</div>';
             data.categories.forEach(cat => {
+                // mark 'new' category with id 'new' in filter-data.json if present
+                const inputId = `cat-${cat.id}`;
                 html += `
                     <div class="filter-item">
-                        <input type="checkbox" id="cat-${cat.id}" value="${cat.id}">
-                        <label for="cat-${cat.id}">${cat.name}</label>
+                        <input type="checkbox" id="${inputId}" value="${cat.id}">
+                        <label for="${inputId}">${cat.name}</label>
                     </div>
                 `;
             });
@@ -160,10 +208,11 @@
             html += '<div class="filter-section">';
             html += '<div class="filter-header">Loại sản phẩm</div>';
             data.types.forEach(type => {
+                const inputId = `type-${type.id}`;
                 html += `
                     <div class="filter-item">
-                        <input type="checkbox" id="type-${type.id}" value="${type.id}">
-                        <label for="type-${type.id}">${type.name}</label>
+                        <input type="checkbox" id="${inputId}" value="${type.id}">
+                        <label for="${inputId}">${type.name}</label>
                     </div>
                 `;
             });
@@ -173,10 +222,11 @@
             html += '<div class="filter-section">';
             html += '<div class="filter-header">Lứa tuổi</div>';
             data.ages.forEach(age => {
+                const inputId = `age-${age.id}`;
                 html += `
                     <div class="filter-item">
-                        <input type="checkbox" id="age-${age.id}" value="${age.id}">
-                        <label for="age-${age.id}">${age.name}</label>
+                        <input type="checkbox" id="${inputId}" value="${age.id}">
+                        <label for="${inputId}">${age.name}</label>
                     </div>
                 `;
             });
@@ -186,10 +236,11 @@
             html += '<div class="filter-section">';
             html += '<div class="filter-header">Mức giá</div>';
             data.prices.forEach(price => {
+                const inputId = `price-${price.id}`;
                 html += `
                     <div class="filter-item">
-                        <input type="radio" id="price-${price.id}" name="price" value="${price.id}">
-                        <label for="price-${price.id}">${price.name}</label>
+                        <input type="radio" id="${inputId}" name="price" value="${price.id}">
+                        <label for="${inputId}">${price.name}</label>
                     </div>
                 `;
             });
