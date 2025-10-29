@@ -385,8 +385,17 @@ window.addToCartFromButton = function(btn) {
 };
 
 window.buyNowFromButton = function(btn) {
-    // Thêm vào giỏ rồi chuyển đến trang cart
-    addToCartFromButton(btn);
-    // Redirect to cart page
+    // Navigate to the product detail page for this product
+    try {
+        const id = btn && btn.dataset && btn.dataset.id ? btn.dataset.id : null;
+        if (id) {
+            // Assuming this script runs on pages under /pages/, relative link to product-detail.html is correct
+            window.location.href = `product-detail.html?id=${encodeURIComponent(id)}`;
+            return;
+        }
+    } catch (e) {
+        console.error('buyNowFromButton error', e);
+    }
+    // Fallback: redirect to cart if id not available
     window.location.href = 'cart.html';
 };
