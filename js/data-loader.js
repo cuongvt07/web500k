@@ -197,6 +197,7 @@ class DataLoader {
                         <div style="font-size: 24px; font-family: 'Markazi Text', serif; font-weight: 700; color: #222; margin-bottom: 16px;">Thành tiền:</div>
                         <div style="font-size: 20px; font-family: 'Markazi Text', serif; color: #222; margin-bottom: 8px;">Giá trị đơn hàng: ${this.formatPrice(subtotal)}</div>
                         <div style="font-size: 20px; font-family: 'Markazi Text', serif; color: #222; margin-bottom: 8px;">Giảm giá: 0</div>
+                        <div style="font-size: 20px; font-family: 'Markazi Text', serif; color: #222; margin-bottom: 8px;">Phí vận chuyển: ${this.formatPrice(shipping)}</div>
                         <div style="font-size: 22px; font-family: 'Markazi Text', serif; font-weight: 700; color: #F0473C; margin-bottom: 16px;">Tổng thanh toán: ${this.formatPrice(total)}</div>
                         <div style="margin-bottom: 16px;">
                             <label style="font-size: 18px; font-family: 'Markazi Text', serif; font-weight: 700; color: #222;">Chọn phương thức thanh toán:</label>
